@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shoe_stores/controllers/auth_controller.dart';
-import 'package:shoe_stores/pages/home_screen.dart';
+
+import 'package:flutter/material.dart';
+
+import 'package:shoe_stores/pages/main_screen.dart';
 import 'package:shoe_stores/pages/log_in_screen.dart';
 import 'package:shoe_stores/pages/on_boarding_screen.dart';
+import 'package:shoe_stores/controllers/auth_controller.dart';
 
 class SplashScreen extends StatelessWidget {
   final AuthController authController = Get.find<AuthController>();
@@ -16,7 +18,7 @@ class SplashScreen extends StatelessWidget {
       if (authController.isFirstTime) {
         Get.off(OnBoardingScreen());
       } else if (authController.isLoggedIn) {
-        Get.off(HomeScreen());
+        Get.off(MainScreen());
       } else {
         Get.off(LogInScreen());
       }

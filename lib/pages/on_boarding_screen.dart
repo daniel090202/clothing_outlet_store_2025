@@ -48,125 +48,127 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          PageView.builder(
-            controller: _pageController,
-            itemCount: _onBoardingItems.length,
-            onPageChanged: (index) {
-              setState(() {
-                _currentPage = index;
-              });
-            },
-            itemBuilder: (context, index) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    _onBoardingItems[index].image,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                  ),
-                  SizedBox(height: 40.0),
-                  Text(
-                    _onBoardingItems[index].title,
-                    textAlign: TextAlign.center,
-                    style: AppTextStyles.withColor(
-                      AppTextStyles.h1,
-                      Theme.of(context).textTheme.bodyLarge!.color!,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            PageView.builder(
+              controller: _pageController,
+              itemCount: _onBoardingItems.length,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPage = index;
+                });
+              },
+              itemBuilder: (context, index) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      _onBoardingItems[index].image,
+                      height: MediaQuery.of(context).size.height * 0.4,
                     ),
-                  ),
-                  SizedBox(height: 16.0),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32.0),
-                    child: Text(
-                      _onBoardingItems[index].description,
+                    SizedBox(height: 40.0),
+                    Text(
+                      _onBoardingItems[index].title,
+                      textAlign: TextAlign.center,
                       style: AppTextStyles.withColor(
-                        AppTextStyles.bodyLarge,
-                        isDark ? Colors.grey[400]! : Colors.grey[600]!,
+                        AppTextStyles.h1,
+                        Theme.of(context).textTheme.bodyLarge!.color!,
                       ),
                     ),
-                  ),
-                ],
-              );
-            },
-          ),
-          Positioned(
-            bottom: 80.0,
-            left: 0.0,
-            right: 0.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                _onBoardingItems.length,
-                (index) => AnimatedContainer(
-                  duration: Duration(microseconds: 300),
-                  margin: EdgeInsets.symmetric(horizontal: 4.0),
-                  height: 8.0,
-                  width: _currentPage == index ? 24.0 : 8.0,
-                  decoration: BoxDecoration(
-                    color: _currentPage == index
-                        ? Theme.of(context).primaryColor
-                        : (isDark ? Colors.grey[700] : Colors.grey[300]),
-                    borderRadius: BorderRadius.circular(4.0),
+                    SizedBox(height: 16.0),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 32.0),
+                      child: Text(
+                        _onBoardingItems[index].description,
+                        style: AppTextStyles.withColor(
+                          AppTextStyles.bodyLarge,
+                          isDark ? Colors.grey[400]! : Colors.grey[600]!,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+            Positioned(
+              bottom: 80.0,
+              left: 0.0,
+              right: 0.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  _onBoardingItems.length,
+                  (index) => AnimatedContainer(
+                    duration: Duration(microseconds: 300),
+                    margin: EdgeInsets.symmetric(horizontal: 4.0),
+                    height: 8.0,
+                    width: _currentPage == index ? 24.0 : 8.0,
+                    decoration: BoxDecoration(
+                      color: _currentPage == index
+                          ? Theme.of(context).primaryColor
+                          : (isDark ? Colors.grey[700] : Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            bottom: 16.0,
-            left: 16.0,
-            right: 16.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    _handleGetStarted();
-                  },
-                  child: Text(
-                    "Skip",
-                    style: AppTextStyles.withColor(
-                      AppTextStyles.buttonMedium,
-                      isDark ? Colors.grey[400]! : Colors.grey[600]!,
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_currentPage < _onBoardingItems.length - 1) {
-                      _pageController.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    } else {
+            Positioned(
+              bottom: 16.0,
+              left: 16.0,
+              right: 16.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: () {
                       _handleGetStarted();
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 32.0,
-                      vertical: 16.0,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(12.0),
+                    },
+                    child: Text(
+                      "Skip",
+                      style: AppTextStyles.withColor(
+                        AppTextStyles.buttonMedium,
+                        isDark ? Colors.grey[400]! : Colors.grey[600]!,
+                      ),
                     ),
                   ),
-                  child: Text(
-                    _currentPage < _onBoardingItems.length - 1
-                        ? "Next"
-                        : "Get Started",
-                    style: AppTextStyles.withColor(
-                      AppTextStyles.buttonMedium,
-                      Colors.white,
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_currentPage < _onBoardingItems.length - 1) {
+                        _pageController.nextPage(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      } else {
+                        _handleGetStarted();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32.0,
+                        vertical: 16.0,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.circular(12.0),
+                      ),
+                    ),
+                    child: Text(
+                      _currentPage < _onBoardingItems.length - 1
+                          ? "Next"
+                          : "Get Started",
+                      style: AppTextStyles.withColor(
+                        AppTextStyles.buttonMedium,
+                        Colors.white,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

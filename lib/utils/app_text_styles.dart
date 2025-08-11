@@ -64,7 +64,7 @@ class AppTextStyles {
     return style.copyWith(color: color);
   }
 
-  static TextStyle withHeight(TextStyle style, FontWeight weight) {
+  static TextStyle withWeight(TextStyle style, FontWeight weight) {
     return style.copyWith(fontWeight: weight);
   }
 }

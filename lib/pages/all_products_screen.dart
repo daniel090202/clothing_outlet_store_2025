@@ -1,12 +1,13 @@
+import 'package:get/get.dart';
+
 import 'package:flutter/material.dart';
 
-import 'package:shoe_stores/utils/app_text_styles.dart';
-import 'package:shoe_stores/widgets/category_chips.dart';
-import 'package:shoe_stores/widgets/filter_bottom_sheet.dart';
 import 'package:shoe_stores/widgets/product_grid.dart';
+import 'package:shoe_stores/utils/app_text_styles.dart';
+import 'package:shoe_stores/widgets/filter_bottom_sheet.dart';
 
-class ShoppingScreen extends StatelessWidget {
-  const ShoppingScreen({super.key});
+class AllProductsScreen extends StatelessWidget {
+  const AllProductsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +16,17 @@ class ShoppingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: isDark ? Colors.white : Colors.black,
+          ),
+        ),
         title: Text(
-          "Shopping",
+          "All products",
           style: AppTextStyles.withColor(
             AppTextStyles.h3,
             isDark ? Colors.white : Colors.black,
@@ -39,12 +49,7 @@ class ShoppingScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Padding(padding: EdgeInsets.only(top: 16.0), child: CategoryChips()),
-          Expanded(child: ProductGrid()),
-        ],
-      ),
+      body: ProductGrid(),
     );
   }
 }

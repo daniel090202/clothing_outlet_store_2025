@@ -16,6 +16,7 @@ final List<Product> products = [
     description: "This is a description of product 2",
     price: 69.00,
     oldPrice: 189.00,
+    isFavorite: true,
   ),
   Product(
     name: "Jordan Shoes",

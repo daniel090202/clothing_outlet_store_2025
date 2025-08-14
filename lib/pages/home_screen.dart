@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';
-import 'package:shoe_stores/pages/all_products_screen.dart';
 
+import 'package:shoe_stores/pages/cart_screen.dart';
 import 'package:shoe_stores/widgets/sale_banner.dart';
 import 'package:shoe_stores/widgets/product_grid.dart';
 import 'package:shoe_stores/widgets/category_chips.dart';
+import 'package:shoe_stores/pages/notification_screen.dart';
 import 'package:shoe_stores/widgets/custom_search_bar.dart';
+import 'package:shoe_stores/pages/all_products_screen.dart';
 import 'package:shoe_stores/controllers/app_theme_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -47,11 +49,15 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(NotificationScreen());
+                    },
                     icon: Icon(Icons.notifications_outlined),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(CartScreen());
+                    },
                     icon: Icon(Icons.shopping_bag_outlined),
                   ),
                   GetBuilder<AppThemeController>(

@@ -1,11 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shoe_stores/controllers/auth_controller.dart';
-import 'package:shoe_stores/pages/log_in_screen.dart';
+
+import 'package:flutter/material.dart';
+import 'package:shoe_stores/pages/edit_profile_screen.dart';
+import 'package:shoe_stores/pages/help_center_screen.dart';
+
 import 'package:shoe_stores/pages/order_screen.dart';
+import 'package:shoe_stores/pages/log_in_screen.dart';
 import 'package:shoe_stores/pages/setting_screen.dart';
-import 'package:shoe_stores/pages/shipping_address_screen.dart';
 import 'package:shoe_stores/utils/app_text_styles.dart';
+import 'package:shoe_stores/controllers/auth_controller.dart';
+import 'package:shoe_stores/pages/shipping_address_screen.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -99,7 +103,9 @@ class AccountScreen extends StatelessWidget {
                   Get.to(OrderScreen());
                 } else if (item["title"] == "Shipping Address") {
                   Get.to(ShippingAddressScreen());
-                } else if (item["title"] == "Help Center") {}
+                } else if (item["title"] == "Help Center") {
+                  Get.to(HelpCenterScreen());
+                }
               },
             ),
           );
@@ -216,7 +222,9 @@ class AccountScreen extends StatelessWidget {
           ),
           SizedBox(height: 16.0),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(EditProfileScreen());
+            },
             style: OutlinedButton.styleFrom(
               padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
               side: BorderSide(color: isDark ? Colors.white70 : Colors.black12),

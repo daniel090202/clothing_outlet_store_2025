@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shoe_stores/models/product.dart';
 import 'package:shoe_stores/utils/mock_data.dart';
 import 'package:shoe_stores/utils/app_text_styles.dart';
+import 'package:shoe_stores/pages/check_out_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -88,7 +89,9 @@ class CartScreen extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(CheckOutScreen());
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).primaryColor,
                 padding: EdgeInsets.symmetric(vertical: 16.0),
